@@ -1,0 +1,173 @@
+<?php
+
+if(isset($_SESSION['user'])){
+    
+}else{
+    header("location:connexion.php");
+}
+
+?>
+
+
+
+<?php
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    if (isset($_POST['email']) && isset($_POST['pass'])) {
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+
+        $stmt = $con->prepare("SELECT email, pass FROM users WHERE email = ? AND pass = ?");
+        $stmt->execute(array($email, $pass));
+        
+        $count = $stmt->rowCount();
+
+        if ($count > 0) {
+            $_SESSION['email'] = $email;
+        header('Location: index.php');
+    }
+}
+}
+
+
+
+?>
+    
+
+    <?php if (isset($user)): ?>
+        
+        <p>Hello <?= htmlspecialchars($user["name"]) ?></p>
+        
+        <p><a href="logout.php">Log out</a></p>
+        
+    <?php else: ?>
+        
+        <p><a href="connexion.php">Log in</a> or <a href="inscription.php">sign up</a></p>
+        
+    <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /////////////////////// ******///////////////// product/************/*/*/*/*/* */
+
+
+
+
+
+
+   <?php
+
+$is_invalid = false;
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    
+    $mysqli = require __DIR__ . "/database.php";
+    
+    $sql = sprintf("SELECT * FROM user
+                    WHERE email = '%s'",
+                   $mysqli->real_escape_string($_POST["email"]));
+    
+    $result = $mysqli->query($sql);
+    
+    $user = $result->fetch_assoc();
+    
+    if ($user) {
+        
+        if (password_verify($_POST["password"], $user["password_hash"])) {
+            
+            session_start();
+            
+            session_regenerate_id();
+            
+            $_SESSION["user_id"] = $user["id"];
+            
+            header("Location: index.php");
+            exit;
+        }
+    }
+    
+    $is_invalid = true;
+}
+
+?>
+
+
+<?php
+
+if(isset($_SESSION['user'])){
+  header("location:products-create.php");
+}else{
+    header("location:connexion.php");
+}
+
+?>
+
+
+
+
+/* .sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    width: 320px;
+    border-radius: 15px;
+    z-index: 10000;
+} */
+
+/* .sub-menu{
+    background: #fff;
+    padding: 20px;
+    margin: 10px; 
+} */
+
+/* .sub-menu-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;
+} */
+
+/* .sub-menu-link p{
+    width: 100%;
+    color: #525252;
+
+} */
+
+/* .sub-menu-link img{
+    width: 40px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+} */
+
+/* .sub-menu-link span{
+    font-size: 22px;
+    transition: transform 0.5s;
+} */
+
+/* .sub-menu-link:hover span {
+    transform: translateX(5px);
+} */
+
+/* .sub-menu-link:hover p{
+    font-weight: 600;
+} */

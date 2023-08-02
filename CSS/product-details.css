@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+
+:root {
+    --primary-color: #90e0ef;
+    --secondary-color: #00b4d5;
+    --tertiary-color: #0077b6;
+    --yellow-color: #ffb900;
+    --gray-color: #808080;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'inter', sans-serif;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.container-details {
+    background-color: #f6f5f7;
+    min-height: 170vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-details {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgb(0, 0, 0, 12%);
+    padding: 45px;
+    margin: 15px 0;
+    width: 1350px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "images info"
+    "images description"
+    "images etat"
+    ;
+    grid-gap: 35px;
+}
+
+
+
+.box-details .images {
+    grid-area: images;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    "active active active"
+    "idle idle idle";
+    grid-gap: 5px;
+}
+
+.box-details .images .img-holder img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+}
+
+.box-details .images .img-holder.active {
+    grid-area: active;
+}
+
+.box-details .images .img-holder:not(.active):hover {
+    opacity: 0.95;
+    cursor: pointer;
+}
+
+.box-details .basic-info {
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.box-details .basic-info .rate {
+    color: var(--yellow-color);
+}
+
+
+
+.box-details .basic-info .price {
+    margin: 4px 0;
+    font-weight: 300;
+    display: flex;
+}
+
+.box-details .basic-info .date-location {
+    display: flex;
+
+    align-items: center;
+}
+
+.box-details .basic-info span {
+    color: #1d1d1d;
+    font-size: 24px;
+    font-weight: 700;
+    margin-right: 12px;
+}
+.box-details .basic-info .old-price {
+    text-decoration: line-through;
+    opacity: 0.6;
+    font-size: 12px;
+}
+
+.box-details .basic-info .item-location {
+    margin-top: 2px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #000000;
+    display: block;
+    font-family: 'inter';
+    font-style: normal;
+    /* font-weight: 600; */
+    padding-left: 4px;
+
+}
+
+.box-details .basic-info .options a {
+    color: white;
+    background-color: var(--secondary-color);
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.box-details .basic-info .options a:hover {
+    background-color: var(--tertiary-color);
+}
+
+.box-details .description {
+    grid-area: description;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+.box-details .description p {
+    color: #686868;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.box-details .basic-info button {
+    background: #0091ff;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: -5px;
+    margin-left: 92px;
+}
+
+.box-details .basic-info button:hover {
+    opacity: 0.8;
+}
+
+.box-details .etat {
+    /* grid-area: etat; */
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.box-details .etat button {
+    background: #0091ff;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: -5px;
+    /* margin-left: 92px; */
+}
+
+.box-details .etat .delete {
+    background: #a10000;
+    color: #fff;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: -5px;
+    /* margin-left: 92px; */
+}
+
+.box-details .etat button:hover {
+    opacity: 0.8;
+}
+
+.box-details .basic-info .message {
+    background: #ff7300;
+    color: #fff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    /* margin-top: 20px; */
+    margin-left: 10px;
+}
+
+.box-details .basic-info .fav {
+    background: #000f23;
+    color: #fff;
+    border: none;
+    padding: 7px 13px;
+    border-radius: 15px;
+    cursor: pointer;
+    /* margin-top: 20px; */
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.box-details .basic-info .signal {
+    background: #adadad;
+    color: #fff;
+    border: none;
+    padding: 5px 9px;
+    border-radius: 11px;
+    cursor: pointer;
+    /* margin-top: 20px; */
+    margin-left: 10px;
+    font-size: 25px;
+}
+
+.box-details .description .features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--gray-color);
+}
+
+.box-details .description .features i {
+    margin-right: 5px;
+}
+
+.box-details .description .features .fa-circle-check {
+    color: var(--tertiary-color);
+}
+
+.box-details .description .features .fa-circle-xmark {
+    color: var(--yellow-color);
+}
+
+.box-details .description .social {
+    list-style: none;
+    display: flex;
+}
+
+.box-details .description .social a {
+    margin-right: 15px;
+    color: var(--gray-color);
+}
+
+.box-details .description .social a:hover {
+    color: var(--secondary-color);
+}
+
+@media (max-width: 991px) {
+    .box-details {
+        width: 750px;
+        grid-template-areas: 
+        "info info"
+        "images description";
+    }
+    .bobox-detailsx .basic-info .options a {
+        padding: 8.5px 12px;
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width: 769px) {
+    .box-details .basic-info span {
+        position: absolute;
+        align-self: flex-end;
+    }
+    .box-details .basic-info .options {
+        position: absolute;
+        align-self: flex-end;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .box-details {
+        width: 600px;
+        grid-template-areas: 
+        "images info"
+        "description description";
+    }
+    .box-details .images {
+        gap: 3px;
+    }
+    .box-details .images .img-holder img {
+        border-radius: 5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .box-details {
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        padding: 35px;
+        margin: 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, auto);
+        grid-template-areas: 
+        "images"
+        "info"
+        "description";
+    }
+}
