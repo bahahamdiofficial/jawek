@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2023 at 06:50 PM
+-- Generation Time: Aug 08, 2023 at 08:11 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -69,6 +69,63 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (9, 'Services'),
 (10, 'Jeux'),
 (11, 'Autre');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `city`
+--
+
+CREATE TABLE `city` (
+  `id` int(11) NOT NULL,
+  `loc_id` int(11) NOT NULL,
+  `name` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `city`
+--
+
+INSERT INTO `city` (`id`, `loc_id`, `name`) VALUES
+(1, 1, 'Ben Arous ville'),
+(2, 1, 'Borj Cedria'),
+(3, 1, 'Megrine'),
+(4, 1, 'Fouchana'),
+(5, 1, 'Ezzahra'),
+(6, 1, 'Radès'),
+(7, 2, 'Tunis Medina'),
+(8, 2, 'Agba'),
+(9, 2, 'Ezzouhour'),
+(10, 2, 'Harairia'),
+(11, 2, 'El Kram'),
+(12, 2, 'Goulette'),
+(13, 2, 'Sijoumi'),
+(14, 3, 'Ariana'),
+(15, 3, 'Borj Touil'),
+(16, 4, 'Gabes ville'),
+(17, 4, 'El Hamma'),
+(18, 5, 'Monastir ville'),
+(19, 5, 'Téboulba'),
+(20, 6, 'Sousse ville'),
+(21, 6, 'Kalaa Sghira'),
+(22, 7, 'Nabeul ville'),
+(23, 7, 'Beni Kalled'),
+(24, 8, 'Medenine ville'),
+(25, 8, 'Djerba Midoun'),
+(26, 9, 'Sfax ville'),
+(27, 9, 'El Amra'),
+(28, 10, 'Kébili ville'),
+(29, 10, 'Souk Lahad'),
+(30, 11, 'Zaghouan ville'),
+(31, 11, 'Zriba'),
+(32, 12, ''),
+(33, 12, ''),
+(34, 13, ''),
+(35, 13, ''),
+(36, 14, ''),
+(37, 14, ''),
+(38, 15, ''),
+(39, 16, '');
 
 -- --------------------------------------------------------
 
@@ -197,7 +254,9 @@ INSERT INTO `subcategory` (`id`, `con_id`, `name`) VALUES
 (6, 2, 'Terrains'),
 (7, 4, 'Télévisions'),
 (8, 4, 'Ordinateurs portables'),
-(9, 4, 'Ordinateur de bureau');
+(9, 4, 'Ordinateur de bureau'),
+(10, 1, 'Ezzahra'),
+(11, 0, 'Radès');
 
 -- --------------------------------------------------------
 
@@ -254,6 +313,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `city`
+--
+ALTER TABLE `city`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `location`
 --
 ALTER TABLE `location`
@@ -304,6 +369,12 @@ ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `city`
+--
+ALTER TABLE `city`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
@@ -325,7 +396,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `subcategory`
 --
 ALTER TABLE `subcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user`

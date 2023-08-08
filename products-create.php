@@ -268,7 +268,7 @@ if(isset($message)){
                                 <option disabled selected>Selectionnez votre ville</option>
                                 <?php
                                 include ('database.php');
-                                $query = "SELECT * FROM Location";
+                                $query = "SELECT * FROM City";
                                 $do = mysqli_query($mysqli, $query);
                                 while($row = mysqli_fetch_array($do)){
                                   echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
