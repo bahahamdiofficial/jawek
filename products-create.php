@@ -122,7 +122,7 @@ if(isset($_GET['delete'])){
         <img src="photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
-            <a href="user.php">
+            <a href="profile.php">
             <div class="user-infoo">
               <img src="photos/avatar/default_profile.jpg">
               <h3>Baha Hamdi</h3>
@@ -130,7 +130,7 @@ if(isset($_GET['delete'])){
           </a>
             <hr>
             
-            <a href="user.php" class="sub-menu-link">
+            <a href="profile.php" class="sub-menu-link">
               <img src="img/profile.png" alt="">
               <p>Profil</p>
               <span class="material-symbols-outlined">chevron_right</span>            
@@ -241,7 +241,7 @@ if(isset($message)){
                 </div>
 
                 <div class="input_field">
-                    <label>Location :</label>
+                    <label>Governerat :</label>
                     <div class="column">
                         <div class="select-box">
                             <select id="location " name="product_location">
@@ -259,6 +259,27 @@ if(isset($message)){
     
                     </div>
                 </div>
+
+                <div class="input_field">
+                    <label>Ville :</label>
+                    <div class="column">
+                        <div class="select-box">
+                            <select id="location " name="product_location">
+                                <option disabled selected>Selectionnez votre ville</option>
+                                <?php
+                                include ('database.php');
+                                $query = "SELECT * FROM Location";
+                                $do = mysqli_query($mysqli, $query);
+                                while($row = mysqli_fetch_array($do)){
+                                  echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
+                                }
+                                ?>
+                            </select>
+                        </div>
+    
+                    </div>
+                </div>
+
                 <div class="input_field">
                     <input type="submit" name="add_product" value="Publier" class="btn-create">
                 </div>

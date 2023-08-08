@@ -166,15 +166,15 @@ if (isset($_SESSION["user_id"])) {
         <img src="photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
-            <a href="user.php">
+            <a href="profile.php">
             <div class="user-info">
               <img src="photos/avatar/default_profile.jpg">
-              <h3><?= htmlspecialchars($user["username"]) ?></h3>
+              <h3><?= htmlspecialchars($user["name"]) ?></h3>
             </div>
           </a>
             <hr>
             
-            <a href="user.php" class="sub-menu-link">
+            <a href="profile.php" class="sub-menu-link">
               <img src="img/profile.png" alt="">
               <p>Profil</p>
               <span class="material-symbols-outlined">chevron_right</span>            
@@ -358,87 +358,7 @@ if (isset($_SESSION["user_id"])) {
       </div>
     
 
-    <div class="flex-center">
-        <div class="wrapper">
-            <span class="icon-close">
-                <ion-icon name="close"></ion-icon>
-            </span>
-            
-            <div class="form-box login">
-                <h2>Connexion</h2>
-                <h3>Entrez vos données d'identification</h3>
-                <form class="#">
 
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="mail"></ion-icon>
-                        </span>
-                        <input type="mail"  name="" id="" placeholder="" required>
-                        <label>Adresse email</label>
-                    </div> 
-
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="lock-closed"></ion-icon>
-                        </span>
-                        <input type="password"  name="" id="" placeholder="" required>
-                        <label>Mot de passe</label>
-                    </div>
-
-                    <div class="remember-forgot">
-                        <label><input type="checkbox">Souvenez-vous</label>
-                        <a href="#">Mot de passe oublié ?</a>
-                    </div>
-                    <button type="submit" class="btn">Se connecter</button>
-                    <div class="login-register">
-                        <p>Pas encore membre ?<a href="#" 
-                            class="register-link">Inscription</a></p>
-                    </div>
-                </form>
-            </div>
-
-            <div class="form-box register">
-                <h2>Inscription</h2>
-                <h3>Créer un nouveau compte</h3>
-                <form class="#">
-
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="person"></ion-icon>
-                        </span>
-                        <input type="text" name="Username" id="username"  required>
-                        <label>Nom d'utilisateur</label>
-                    </div> 
-
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="mail"></ion-icon>
-                        </span>
-                        <input type="mail" name="" id="" required>
-                        <label>Adresse email</label>
-                    </div> 
-
-                    <div class="input-box">
-                        <span class="icon">
-                            <ion-icon name="lock-closed"></ion-icon>
-                        </span>
-                        <input type="password" name="" id="" placeholder="" required>
-                        <label>Mot de passe</label>
-                    </div>
-
-                    <div class="remember-forgot">
-                        <label><input type="checkbox">J'accepte les termes et conditions</label>
-                    </div>
-                    <button type="submit" class="btn">Inscription</button>
-                    <div class="login-register">
-                        <p>Vous avez déjà un compte ?<a href="#" 
-                            class="login-link">Connexion</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>  
-    </div>
-       
 
 
     

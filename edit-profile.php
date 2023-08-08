@@ -29,7 +29,7 @@ if (isset($_SESSION["user_id"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jawek.tn | Créer une annonce </title>
+    <title>Jawek.tn | Paramètres </title>
     <meta name="description" content="site vente et achat en ligne tunisie">
     <meta name="keywords" content="Location, Vente, Achat, Tunisie, e-commerce, services, cava.tn, tayara.tn">
     <link rel="stylesheet" href="css/style.css">
@@ -67,7 +67,7 @@ if (isset($_SESSION["user_id"])) {
         <img src="photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
-            <a href="user.php">
+            <a href="profile.php">
             <div class="user-infoo">
               <img src="photos/avatar/default_profile.jpg">
               <h3>Baha Hamdi</h3>
@@ -131,11 +131,21 @@ if (isset($_SESSION["user_id"])) {
 
                 <div class="input_field">
                     <label>Nom d'utilisateur</label>
-                    <input type="text" class="input" name="name"  >
+                    <input type="text" class="input" name="username"  >
                 </div>
 
                 <div class="input_field">
-                    <label>Description</label>
+                    <label>Email</label>
+                    <input type="text" class="input" name="email"  >
+                </div>
+
+                <div class="input_field">
+                    <label>Numéro de tél</label>
+                    <input type="phone" class="input" name="phone" placeholder="+216 " >
+                </div>
+
+                <div class="input_field">
+                    <label>Bio</label>
                     <textarea name="bio" id="Description" cols="30" rows="10"></textarea>
                 </div>
 

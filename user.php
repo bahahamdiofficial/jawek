@@ -26,7 +26,7 @@ if (isset($_SESSION["user_id"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jawek.tn | Mon Compte </title>
+    <title>Jawek.tn | <?= htmlspecialchars($user["name"]) ?> </title>
     <meta name="description" content="site vente et achat en ligne tunisie">
     <meta name="keywords" content="Location, Vente, Achat, Tunisie, e-commerce, services, cava.tn, tayara.tn">
     <link rel="stylesheet" href="css/user.css">
@@ -75,7 +75,7 @@ if (isset($_SESSION["user_id"])) {
         <img src="photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
-            <a href="user.php">
+            <a href="profile.php">
             <div class="user-info">
               <img src="photos/avatar/default_profile.jpg">
 
@@ -84,13 +84,13 @@ if (isset($_SESSION["user_id"])) {
           </a>
             <hr>
             
-            <a href="user.php" class="sub-menu-link">
+            <a href="profile.php" class="sub-menu-link">
               <img src="img/profile.png" alt="">
               <p>Profil</p>
               <span class="material-symbols-outlined">chevron_right</span>            
             </a>
 
-            <a href="edit-profile.php" class="sub-menu-link">
+            <a href="#" class="sub-menu-link">
               <img src="img/setting.png" alt="">
               <p>Paramètres</p>
               <span class="material-symbols-outlined">chevron_right</span>            
@@ -142,20 +142,20 @@ if (isset($_SESSION["user_id"])) {
           <img src="photos/avatar/default_profile.jpg" alt="Baha Hamdi" />
           <span></span>
         </div>
-       
-
-
-        <h2><?= htmlspecialchars($user["name"]) ?> <i class="fa-solid fa-circle-check" style="  siza: 1px;  font-size: 16px;  color: #0093ff; top: 3px;"></i></h2>
+        <h2><?= htmlspecialchars($user["name"]) ?> <i class="fa-solid fa-circle-check" style="
+    siza: 1px;
+    font-size: 16px;
+    color: #0093ff;
+    top: 3px;
+"></i></h2>
         <!-- <h4>@<?= htmlspecialchars($user["name"]) ?></h4> -->
 
         <p>Welcome to my profile</p>
-
-
     
         <div class="info-nbr">
             
             <div class="nbr-follow">
-                1787 abonnés
+                502 abonnés
             </div>
             |
             <div class="nbr-pub">
@@ -163,19 +163,19 @@ if (isset($_SESSION["user_id"])) {
             </div>
         </div>
 
-        <a href="edit-profile.php"><button>Modifier profil</button></a>
+        <button>Suivre</button>
+        <button class="message">Message</button>
+        <button class="signal"><i class="fa-solid fa-circle-exclamation"></i></button>
 
         
+
 
       </div>
       <div class="right__col">
         <nav>
           <ul class="tabs">
-            <li class="active" data-cont=".mes_produits">Mes produits</li>
-            <li data-cont=".mes_favoires">Mes favoires</li>
-            <li data-cont=".mes_pause">Mes En pause</li>
-            <li data-cont=".mes_ventes">Mes ventes</li>
-            <li data-cont=".mes_achats">Mes achats</li>
+            <li class="active" data-cont=".mes_produits">Annonces de <?= htmlspecialchars($user["name"]) ?></li>
+
 
           </ul>
         </nav>
@@ -253,135 +253,7 @@ if (isset($_SESSION["user_id"])) {
                   </div>
               </div>
 
-              <div class="mes_favoires">
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-
-                    <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-              </div>
-
-              <div class="mes_pause">
-               
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">22 220.000 DT</span>
-                                <span class = "old-price">23 275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-
-
-                    
-              </div>
-
-              <div class="mes_ventes">
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-
-                    <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-              </div>
-
-              <div class="mes_achats">
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-
-                    <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
+             
               </div>
           </div>
           <br><br>

@@ -170,15 +170,15 @@ if (isset($_SESSION["user_id"])) {
         <img src="photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
-            <a href="user.php">
+            <a href="profile.php">
             <div class="user-info">
               <img src="photos/avatar/default_profile.jpg">
-              <h3><?= htmlspecialchars($user["username"]) ?></h3>
+              <h3><?= htmlspecialchars($user["name"]) ?></h3>
             </div>
           </a>
             <hr>
             
-            <a href="user.php" class="sub-menu-link">
+            <a href="profile.php" class="sub-menu-link">
               <img src="img/profile.png" alt="">
               <p>Profil</p>
               <span class="material-symbols-outlined">chevron_right</span>            

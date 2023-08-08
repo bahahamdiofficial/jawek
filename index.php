@@ -63,22 +63,7 @@ include 'init.php';
                   <input type="number" id="price-max" name="price-max" min="0">
                 </div>
               </div>
-              <div class="filter-section">
-                <h4>Color</h4>
-                <div class="filter-color">
-                  <label><input type="checkbox" name="color" value="red">Red</label>
-                  <label><input type="checkbox" name="color" value="blue">Blue</label>
-                  <label><input type="checkbox" name="color" value="green">Green</label>
-                </div>
-              </div>
-              <div class="filter-section">
-                <h4>Size</h4>
-                <div class="filter-size">
-                  <label><input type="checkbox" name="size" value="small">Small</label>
-                  <label><input type="checkbox" name="size" value="medium">Medium</label>
-                  <label><input type="checkbox" name="size" value="large">Large</label>
-                </div>
-              </div>
+              
               <div class="filter-section">
                 <button type="submit">Apply Filters</button>
               </div>

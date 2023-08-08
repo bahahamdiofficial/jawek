@@ -90,6 +90,9 @@ if (isset($_SESSION["user_id"])) {
                     <button type="submit" id="submit">Continuer</button>
                     
                 </form>
+                <div class="new-signup ">
+                    <span>Annuler </span><a class="signup-link"  href="../connexion.php">cliquez ici</a>
+                    </div>
 
             </div>
 </center>

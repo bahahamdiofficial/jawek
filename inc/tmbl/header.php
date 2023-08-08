@@ -148,7 +148,7 @@
         <img src="photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
-            <a href="user.php">
+            <a href="profile.php">
             <div class="user-info">
               <img src="photos/avatar/default_profile.jpg">
               <h3><?= htmlspecialchars($user["name"]) ?></h3>
@@ -162,7 +162,7 @@
               <span class="material-symbols-outlined">chevron_right</span>            
             </a>
 
-            <a href="#" class="sub-menu-link">
+            <a href="edit-profile.php" class="sub-menu-link">
               <img src="img/setting.png" alt="">
               <p>Paramètres</p>
               <span class="material-symbols-outlined">chevron_right</span>            

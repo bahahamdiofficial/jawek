@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jawek.tn | Créer une annonce </title>
+    <title>Jawek.tn | Dashboard </title>
     <meta name="description" content="site vente et achat en ligne tunisie">
     <meta name="keywords" content="Location, Vente, Achat, Tunisie, e-commerce, services, cava.tn, tayara.tn">
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/eee7d68921.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="Photos/icons/icon.png">
+    <link rel="icon" href="../Photos/icons/icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" 
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -42,35 +42,22 @@
 
 
 
-        <img src="../photos/avatar/admin.jpg" class="user-pic" onclick="toggleMenu()">
+        <img src="../photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
         <div class="sub-menu-wrap" id="subMenu">
           <div class="sub-menu">
-            <a href="user.php">
+            <a href="profile.php">
             <div class="user-infoo">
-              <img src="../photos/avatar/admin.jpg">
+              <img src="../photos/avatar/default_profile.jpg">
               <h3>Baha Hamdi</h3>
             </div>
           </a>
             <hr>
             
-            <a href="user.php" class="sub-menu-link">
-              <img src="../img/profile.png" alt="">
-              <p>Profil</p>
-              <span class="material-symbols-outlined">chevron_right</span>            
-            </a>
 
             <a href="#" class="sub-menu-link">
               <img src="../img/setting.png" alt="">
               <p>Paramètres</p>
               <span class="material-symbols-outlined">chevron_right</span>            
-            </a>
-
-            <a href="#" class="sub-menu-link">
-              <img src="../img/help.png" alt="">
-              <p>Aide et assistance</p>
-              <span class="material-symbols-outlined">
-                chevron_right
-                </span>
             </a>
 
             <a href="logout.php" class="sub-menu-link">
