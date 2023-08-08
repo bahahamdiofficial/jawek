@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2023 at 10:23 PM
+-- Generation Time: Aug 08, 2023 at 06:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -213,27 +213,29 @@ CREATE TABLE `user` (
   `name` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `profile_pic` text NOT NULL DEFAULT 'default_profile.jpg',
+  `bio` varchar(255) NOT NULL,
   `unique_id` int(255) NOT NULL,
-  `status` varchar(255) NOT NULL
+  `status` varchar(255) NOT NULL,
+  `TrustStatus` int(11) NOT NULL DEFAULT 0 COMMENT 'Seller rank '
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `email`, `phone`, `name`, `password_hash`, `profile_pic`, `unique_id`, `status`) VALUES
-(1, 'baha', 'googaa@gmail.com', '', 'Baha Hamdi', '$2y$10$Sf63hcKtXmz2AFV4pSuuy.GCLvluvQZPCo5iVVm9RU0Hvm5K0v8Vy', 'default_profile.jpg', 0, '0'),
-(2, '1111', 'DD1yosra@yahho.fr', '', 'yosra', '$2y$10$nn4rEhe9m1wRcFNhSI4ok.2ZMhnhSCQ71t4yFZlZgcgMXKRvrncfC', 'default_profile.jpg', 0, '0'),
-(10, '22', 'softign@gmail.com1', '', 'baha', '$2y$10$AXt0utHxXYWCqXriL/dh6u.p93BBekrN6LjZt58F6LVPWh4Dz7XKe', 'default_profile.jpg', 0, '0'),
-(12, 'saif007', 'saif@gmail.com', '', 'saif', '$2y$10$Zp1X52xOh9M2fQ8z2ix.q.0wtYsElAAkFDxILjaEQzmEVb3CIGBIW', 'default_profile.jpg', 1335668422, '0'),
-(13, 'appnester', 'appnester@gmail.com', '', 'App Nester', '$2y$10$t8bJ2qbQBWqmeAHWccjFAuCAtwgn8IXVOMYuzjKjRj8N9z6QbKZHa', 'default_profile.jpg', 1395384648, '0'),
-(14, 'mrwick', 'wick@gmail.com', '', 'Mr Wick', '$2y$10$NXLkRuS.cFmnQIL7/iCUEuk3gjuPTr42BHvY.r2yEJ0jmJ4MpOFLm', 'default_profile.jpg', 0, '0'),
-(15, 'bahahamdi__', 'bahahamdiofficial@gmail.com', '', 'Baha', '$2y$10$C1ndOqN7Q72F9YNSDxgAMOJmSTQzBH30NL9Sm1zalrixmDN4GJ.oS', 'default_profile.jpg', 0, '0'),
-(17, 'toot', 'Toot1@gmail.com', '', 'Baha', '$2y$10$tOMIV137QSNFmQcsHJxojulGnY2mNr9iEm54njY4kmFM4HNNBUOnq', 'default_profile.jpg', 106846831, '0'),
-(18, 'toota', 'Toot11@gmail.com', '', 'toota', '$2y$10$B.IJGZVvdZPcTAVoLten9.VFN/GepmCqJuXq8ZCBs4ZLjrzgZSKdi', 'default_profile.jpg', 757575, '0'),
-(1001, 'Elmoudir', 'elmoudir@gmail.com', '', 'El Moudir', '$2y$10$VyQgycjKXVjBqIsJQRphLu3D4tCDVIsueethDfO739GQEDOwdBRuS', 'default_profile.jpg', 0, ''),
-(1004, 'iphone', 'iphone@gmail.com', '', 'Iphone', '$2y$10$A1ApmzSPZtDccyrgcmBj3u/rjcmZH9pgeihTImGQ.9Hmrt75Vjf4K', 'default_profile.jpg', 0, ''),
-(1005, 'nokia', 'nokia@gmail.com', '98745877', 'Nokia', '$2y$10$NwkZBRXGjZv9s9u1coXeb.ER5VzfD5tAWDG5aElvrbxLKD6Bs7Snq', 'default_profile.jpg', 0, '');
+INSERT INTO `user` (`id`, `username`, `email`, `phone`, `name`, `password_hash`, `profile_pic`, `bio`, `unique_id`, `status`, `TrustStatus`) VALUES
+(1, 'baha', 'googaa@gmail.com', '', 'Baha Hamdi', '$2y$10$Sf63hcKtXmz2AFV4pSuuy.GCLvluvQZPCo5iVVm9RU0Hvm5K0v8Vy', 'default_profile.jpg', '', 0, '0', 0),
+(2, '1111', 'DD1yosra@yahho.fr', '', 'yosra', '$2y$10$nn4rEhe9m1wRcFNhSI4ok.2ZMhnhSCQ71t4yFZlZgcgMXKRvrncfC', 'default_profile.jpg', '', 0, '0', 0),
+(10, '22', 'softign@gmail.com1', '', 'baha', '$2y$10$AXt0utHxXYWCqXriL/dh6u.p93BBekrN6LjZt58F6LVPWh4Dz7XKe', 'default_profile.jpg', '', 0, '0', 0),
+(12, 'saif007', 'saif@gmail.com', '', 'saif', '$2y$10$Zp1X52xOh9M2fQ8z2ix.q.0wtYsElAAkFDxILjaEQzmEVb3CIGBIW', 'default_profile.jpg', '', 1335668422, '0', 0),
+(13, 'appnester', 'appnester@gmail.com', '', 'App Nester', '$2y$10$t8bJ2qbQBWqmeAHWccjFAuCAtwgn8IXVOMYuzjKjRj8N9z6QbKZHa', 'default_profile.jpg', '', 1395384648, '0', 0),
+(14, 'mrwick', 'wick@gmail.com', '', 'Mr Wick', '$2y$10$NXLkRuS.cFmnQIL7/iCUEuk3gjuPTr42BHvY.r2yEJ0jmJ4MpOFLm', 'default_profile.jpg', '', 0, '0', 0),
+(15, 'bahahamdi__', 'bahahamdiofficial@gmail.com', '', 'Baha', '$2y$10$C1ndOqN7Q72F9YNSDxgAMOJmSTQzBH30NL9Sm1zalrixmDN4GJ.oS', 'default_profile.jpg', '', 0, '0', 0),
+(17, 'toot', 'Toot1@gmail.com', '', 'Baha', '$2y$10$tOMIV137QSNFmQcsHJxojulGnY2mNr9iEm54njY4kmFM4HNNBUOnq', 'default_profile.jpg', '', 106846831, '0', 0),
+(18, 'toota', 'Toot11@gmail.com', '', 'toota', '$2y$10$B.IJGZVvdZPcTAVoLten9.VFN/GepmCqJuXq8ZCBs4ZLjrzgZSKdi', 'default_profile.jpg', '', 757575, '0', 0),
+(1001, 'Elmoudir', 'elmoudir@gmail.com', '', 'El Moudir', '$2y$10$VyQgycjKXVjBqIsJQRphLu3D4tCDVIsueethDfO739GQEDOwdBRuS', 'default_profile.jpg', '', 0, '', 0),
+(1004, 'iphone', 'iphone@gmail.com', '', 'Iphone', '$2y$10$A1ApmzSPZtDccyrgcmBj3u/rjcmZH9pgeihTImGQ.9Hmrt75Vjf4K', 'default_profile.jpg', '', 0, '', 0),
+(1005, 'nokia', 'nokia@gmail.com', '98745877', 'Nokia', '$2y$10$NwkZBRXGjZv9s9u1coXeb.ER5VzfD5tAWDG5aElvrbxLKD6Bs7Snq', 'default_profile.jpg', '', 0, '', 0);
 
 --
 -- Indexes for dumped tables
