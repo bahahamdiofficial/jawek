@@ -366,7 +366,7 @@ include 'init.php';
                         <?php foreach ($products as $product) : ?>
                             <div class="item">
                                 <?php if ($product->is_sold) : ?>
-                                    <div class="sold-streak">Vendu</div>
+                                    <div class="sold-streak">VENDU</div>
                                 <?php endif ?>
                                 <div class="item-img">
                                     <?php if (fetchProductImages($product->product_id)) :
@@ -401,7 +401,7 @@ include 'init.php';
                             <span class="material-symbols-outlined">
                                 warning
                             </span>
-                            0 products available
+                            0 Produits disponibles
                         </div>
                     <?php endif ?>
                 </div>
@@ -467,7 +467,7 @@ include 'init.php';
                             <span class="material-symbols-outlined">
                                 warning
                             </span>
-                            0 products available
+                            0 Produits disponibles
                         </div>
                     <?php endif ?>
                 </div>
@@ -531,7 +531,7 @@ include 'init.php';
                             <span class="material-symbols-outlined">
                                 warning
                             </span>
-                            0 products available
+                            0 Produits disponibles
                         </div>
                     <?php endif ?>
                 </div>
@@ -595,7 +595,7 @@ include 'init.php';
                             <span class="material-symbols-outlined">
                                 warning
                             </span>
-                            0 products available
+                            0 Produits disponibles
                         </div>
                     <?php endif ?>
                 </div>

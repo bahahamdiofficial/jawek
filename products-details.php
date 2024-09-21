@@ -493,7 +493,7 @@ function fetchIdentity($user_id)
                         <h2 style="color: red;">Vendu</h2>
                     <?php endif ?>
                     <?php if ($product->is_paused) : ?>
-                        <h2 style="color: #fb8500;">En attente</h2>
+                        <h2 style="color: red;">En attente</h2>
                     <?php endif ?>
                     <h1><?php echo $product->name ?></h1>
                     <div class="price">
