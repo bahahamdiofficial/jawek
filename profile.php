@@ -1,130 +1,180 @@
-
-
 <?php
 
 session_start();
 
+
+include "./database.php";
+
 if (isset($_SESSION["user_id"])) {
-    
-    $mysqli = require __DIR__ . "/database.php";
-    
+
     $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
-            
-    $result = $mysqli->query($sql);
-    
-    $user = $result->fetch_assoc();
 
-}else{
-  header("location:connexion.php");
+    $result = $conn->query($sql);
+
+    $user = $result->fetch();
+} else {
+
+    header("location: ./connexion.php");
 }
 
+function fetchFollowers($user_id)
+{
+
+    include "./database.php";
+
+
+    $sql = "SELECT * FROM followers
+            WHERE 
+            seller = :user_id";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam("user_id", $user_id);
+
+    $stmt->execute();
+
+    if ($stmt->rowCount() >= 1) {
+        return  $stmt->fetchAll();
+    } else {
+        return false;
+    }
+}
+
+function fetchFavourites($user_id)
+{
+
+    include "./database.php";
+
+
+    $sql = "SELECT * FROM favourites
+            WHERE 
+            user_id = :user_id";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam("user_id", $user_id);
+
+    $stmt->execute();
+
+    if ($stmt->rowCount() >= 1) {
+        return  $stmt->fetchAll();
+    } else {
+        return false;
+    }
+}
+function fetchProduct($product_id)
+{
+
+    include "./database.php";
+
+
+    $sql = "SELECT * FROM products
+            WHERE 
+            product_id = :product_id";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam("product_id", $product_id);
+
+    $stmt->execute();
+
+    if ($stmt->rowCount() >= 1) {
+        return  $stmt->fetch();
+    } else {
+        return false;
+    }
+}
+
+
+
+
+
+function fetchProducts($user_id)
+{
+
+    include "./database.php";
+
+
+    $sql = "SELECT * FROM products
+            WHERE 
+            user_id = :user_id";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam("user_id", $user_id);
+
+    $stmt->execute();
+
+    if ($stmt->rowCount() >= 1) {
+
+        return $stmt->fetchAll();
+    } else {
+        return false;
+    }
+}
+
+
+
+function fetchProductImages($product_id)
+{
+
+    include "./database.php";
+
+
+    $sql = "SELECT * FROM product_images 
+            WHERE
+            
+            product_id = :product_id";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam("product_id", $product_id);
+
+    $stmt->execute();
+
+
+    $stmt->bindParam("product_id", $product_id);
+
+    if ($stmt->rowCount() >= 1) {
+
+        return $stmt->fetchAll();
+    } else {
+        return false;
+    }
+}
+
+
+function fetchIdentity($user_id)
+{
+
+    include "./database.php";
+
+
+    $sql = "SELECT * FROM identity_confirmation 
+          WHERE user_id = :user_id";
+
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam("user_id", $user_id);
+
+    $stmt->execute();
+
+    if ($stmt->rowCount() == 1) {
+        return $stmt->fetch();
+    } else {
+        return false;
+    }
+}
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jawek.tn | Mon Compte </title>
-    <meta name="description" content="site vente et achat en ligne tunisie">
-    <meta name="keywords" content="Location, Vente, Achat, Tunisie, e-commerce, services, cava.tn, tayara.tn">
-    <link rel="stylesheet" href="css/user.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <script src="https://kit.fontawesome.com/eee7d68921.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="Photos/icons/icon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" 
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">    <link rel="stylesheet" href="<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
-</head>
-
-<header>
-    <a href="index.php">
-        <img src="Photos/logos/logo.png" alt="" class="logo">
-        </a>
-    <div class="navbar">
-        <div class="searchBox">
-            <input type="text" placeholder="Recherche de produits ..."  />
-            <span class="fas fa-search" id="searchIcon"></span>
-            
-        </div>
-    </div>
-    <div class="btn-vendre">
-        <img src="photos/ic_camera.svg" alt="">
-        <a href="products-create.php">VENDRE</a>
-    </div>
+<?php include "./inc/tmbl/header.php" ?>
+<link rel="stylesheet" href="./css/user.css">
 
 
-  <?php if (isset($user)): ?>
-        
-        <div class="main">
-
-
-            <div class="main-profill">
-        <i class="fa-solid fa-envelope"></i>
-        <!-- <a href="ma-compte.html">Profil</a> -->
-        <i class="fa-solid fa-bell"></i>
-
-
-
-        <img src="photos/avatar/default_profile.jpg" class="user-pic" onclick="toggleMenu()">
-        <div class="sub-menu-wrap" id="subMenu">
-          <div class="sub-menu">
-            <a href="profile.php">
-            <div class="user-info">
-              <img src="photos/avatar/default_profile.jpg">
-
-              <h3><?= htmlspecialchars($user["name"]) ?></h3>
-            </div>
-          </a>
-            <hr>
-            
-            <a href="profile.php" class="sub-menu-link">
-              <img src="img/profile.png" alt="">
-              <p>Profil</p>
-              <span class="material-symbols-outlined">chevron_right</span>            
-            </a>
-
-            <a href="edit-profile.php" class="sub-menu-link">
-              <img src="img/setting.png" alt="">
-              <p>Paramètres</p>
-              <span class="material-symbols-outlined">chevron_right</span>            
-            </a>
-
-            <a href="#" class="sub-menu-link">
-              <img src="img/help.png" alt="">
-              <p>Aide et assistance</p>
-              <span class="material-symbols-outlined">
-                chevron_right
-                </span>
-            </a>
-
-            <a href="logout.php" class="sub-menu-link">
-              <img src="img/logout.png" alt="">
-              <p>Se déconnecter</p>
-              <!-- <span>></span> -->
-            </a>
-          </div>
-        </div>
-    </div>
-
-            </div>
-        <?php else: ?>
-            <div class="main">
-            <span class="fa fa-sign-out"></span>
-            <p><a href="connexion.php">Connexion</a><a href="inscription.php">Inscription</a></p>
-            </div>
-        <?php endif; ?>
-    
-       
-</header>
 <body>
-   <!--div class="container">
+    <!--div class="container">
     
     <div class="container-profil">
 
@@ -135,271 +185,399 @@ if (isset($_SESSION["user_id"])) {
 
    </div-->
     <!--header></header-->
-  <div class="header__wrapper"> 
-    <div class="cols__container">
-      <div class="left__col">
-        <div class="img__container">
-          <img src="photos/avatar/default_profile.jpg" alt="Baha Hamdi" />
-          <span></span>
-        </div>
-       
+    <div class="header__wrapper">
+        <div class="cols__container">
+            <div class="left__col">
+                <div class="img__container">
+                    <img src="./Photos/<?php echo $user->profile_pic ?>" alt="Image of <?php echo $user->name ?> " />
+                    <span></span>
+                </div>
 
 
-        <h2><?= htmlspecialchars($user["name"]) ?> <i class="fa-solid fa-circle-check" style="  siza: 1px;  font-size: 16px;  color: #0093ff; top: 3px;"></i></h2>
 
-        <p>Welcome to my profile</p>
+                <h2><?= htmlspecialchars($user->name) ?>
+                    <?php if (fetchIdentity($user->id) != false && fetchIdentity($user->id)->is_verified) : ?>
+
+                        <i class="fa-solid fa-circle-check" style="   font-size: 16px;  color: #0093ff; top: 3px;"></i>
+                    <?php endif ?>
+                </h2>
+
+                <p><?php echo $user->bio != null ?  $user->bio : "Bienvenue sur mon profil" ?></p>
 
 
-    
-        <div class="info-nbr">
-            
-            <div class="nbr-follow">
-                1787 abonnés
+
+                <div class="info-nbr">
+
+                    <div class="nbr-follow">
+                        <?php echo fetchFollowers($user->id) != false  ? count(fetchFollowers($user->id)) : 0  ?> abonnés
+                    </div>
+                    |
+                    <div class="nbr-pub">
+                        <?php echo fetchProducts($user->id) != false ? count(fetchProducts($user->id)) : 0 ?>
+                        publications
+                    </div>
+                </div>
+
+                <a href="edit-profile.php"><button>Modifier profil</button></a>
+
+
+
             </div>
-            |
-            <div class="nbr-pub">
-                4 publications
+            <div class="right__col">
+                <nav>
+                    <ul class="tabs">
+                        <li class="active" data-cont=".mes_produits">Mes produits</li>
+                        <li data-cont=".mes_favoires">Mes favoires</li>
+                        <li data-cont=".mes_pause">Mes En pause</li>
+                        <li data-cont=".mes_ventes">Mes ventes</li>
+
+                    </ul>
+                </nav>
+
+                <div class="main-wrapper">
+                    <div class="container">
+                        <div class="products mes_produits">
+
+                            <?php
+
+                            $products = fetchProducts($user->id);
+
+                            if ($products != false) {
+                                $products = array_filter($products, function ($product) {
+                                    if ($product->is_sold == 0) {
+                                        return $product;
+                                    }
+                                });
+                            }
+
+                            if ($products != false) : ?>
+
+                                <?php foreach ($products as $product) : ?>
+
+                                    <div class="item">
+                                        <div class="item-img">
+
+                                            <?php if (fetchProductImages($product->product_id)) :
+
+                                                $images = fetchProductImages($product->product_id);
+
+                                                $img = reset($images);
+
+                                            ?>
+
+                                                <img src="./uploaded_img/<?php echo $img->image ?>" alt="">
+
+                                            <?php else : ?>
+
+                                                <img src="./Photos/def-product-img.jpg" alt="">
+
+                                            <?php endif ?>
+
+
+                                        </div>
+                                        <div class="item-detail">
+                                            <div class="item-price">
+                                                <span class="new-price">
+                                                    <?php
+                                                    echo $product->price
+                                                    ?> DT
+                                                </span>
+                                                <span class="old-price">
+                                                    <?php
+                                                    echo (0.2 * $product->price) + $product->price
+                                                    ?> DT
+                                                </span>
+                                            </div>
+                                            <a target="_blank" href="./product-details.php?product=<?php echo $product->product_id ?>" class="item-name"> <?php echo substr($product->name, 0, 40) ?> </a>
+
+                                        </div>
+                                    </div>
+
+                                <?php endforeach ?>
+
+                            <?php else : ?>
+                                <div class="note warning">
+                                    <span class="material-symbols-outlined">
+                                        warning
+                                    </span>
+                                    Vous avez 0 produits
+                                </div>
+                            <?php endif ?>
+
+                        </div>
+
+                        <div class="products mes_favoires">
+
+
+
+                            <?php
+
+                            if (fetchFavourites($user->id) != false) : ?>
+
+                                <?php foreach (fetchFavourites($user->id) as $favourite) : ?>
+
+                                    <?php if (fetchProduct($favourite->product_id) != false) :
+
+                                        $product = fetchProduct($favourite->product_id);
+                                    ?>
+
+                                        <div class="item">
+                                            <div class="item-img">
+
+                                                <?php if (fetchProductImages($product->product_id)) :
+
+                                                    $images = fetchProductImages($product->product_id);
+
+                                                    $img = reset($images);
+
+                                                ?>
+
+                                                    <img src="./uploaded_img/<?php echo $img->image ?>" alt="">
+
+                                                <?php else : ?>
+
+                                                    <img src="./Photos/def-product-img.jpg" alt="">
+
+                                                <?php endif ?>
+
+
+                                            </div>
+                                            <div class="item-detail">
+                                                <div class="item-price">
+                                                    <span class="new-price">
+                                                        <?php
+                                                        echo $product->price
+                                                        ?> DT
+                                                    </span>
+                                                    <span class="old-price">
+                                                        <?php
+                                                        echo (0.2 * $product->price) + $product->price
+                                                        ?> DT
+                                                    </span>
+                                                </div>
+                                                <a target="_blank" href="./product-details.php?product=<?php echo $product->product_id ?>" class="item-name"> <?php echo substr($product->name, 0, 40) ?> </a>
+
+                                            </div>
+                                        </div>
+
+                                    <?php else : ?>
+
+                                        <div class="product-place-holder">
+                                            <div class="holder-img">
+                                                <img src="./Photos/product-not-found.svg" alt="">
+                                            </div>
+                                            <div class="product-content">
+                                                Produit non trouvé
+                                            </div>
+                                        </div>
+
+                                    <?php endif ?>
+
+                                <?php endforeach ?>
+
+                            <?php else : ?>
+                                <div class="note warning">
+                                    <span class="material-symbols-outlined">
+                                        warning
+                                    </span>
+                                    Vous avez 0 produits favoris
+                                </div>
+                            <?php endif ?>
+
+                        </div>
+
+                        <div class="products mes_pause">
+
+                            <?php
+
+                            $products = fetchProducts($user->id);
+
+                            if ($products != false) {
+                                $products = array_filter($products, function ($product) {
+                                    if ($product->is_paused == 1) {
+                                        return $product;
+                                    }
+                                });
+                            }
+
+                            ?>
+
+                            <?php if ($products != false) :
+
+
+
+
+
+                            ?>
+
+                                <?php foreach ($products as $product) : ?>
+
+                                    <div class="item">
+                                        <div class="item-img">
+
+                                            <?php if (fetchProductImages($product->product_id)) :
+
+                                                $images = fetchProductImages($product->product_id);
+
+                                                $img = reset($images);
+
+                                            ?>
+
+                                                <img src="./uploaded_img/<?php echo $img->image ?>" alt="">
+
+                                            <?php else : ?>
+
+                                                <img src="./Photos/def-product-img.jpg" alt="">
+
+                                            <?php endif ?>
+
+
+                                        </div>
+                                        <div class="item-detail">
+                                            <div class="item-price">
+                                                <span class="new-price">
+                                                    <?php
+                                                    echo $product->price
+                                                    ?> DT
+                                                </span>
+                                                <span class="old-price">
+                                                    <?php
+                                                    echo (0.2 * $product->price) + $product->price
+                                                    ?> DT
+                                                </span>
+                                            </div>
+                                            <a target="_blank" href="./product-details.php?product=<?php echo $product->product_id ?>" class="item-name"> <?php echo substr($product->name, 0, 40) ?> </a>
+
+                                        </div>
+                                    </div>
+
+                                <?php endforeach ?>
+
+                            <?php else : ?>
+                                <div class="note warning">
+                                    <span class="material-symbols-outlined">
+                                        warning
+                                    </span>
+                                    Vous avez 0 produits
+                                </div>
+                            <?php endif ?>
+
+                        </div>
+
+                        <div class="products mes_ventes">
+
+                            <?php
+
+                            $products = fetchProducts($user->id);
+
+                            if ($products != false) {
+                                $products = array_filter($products, function ($product) {
+                                    if ($product->is_sold == 1) {
+                                        return $product;
+                                    }
+                                });
+                            }
+
+                            ?>
+
+                            <?php if ($products != false) :
+
+
+
+
+
+                            ?>
+
+                                <?php foreach ($products as $product) : ?>
+
+                                    <div class="item">
+                                        <div class="item-img">
+
+                                            <?php if (fetchProductImages($product->product_id)) :
+
+                                                $images = fetchProductImages($product->product_id);
+
+                                                $img = reset($images);
+
+                                            ?>
+
+                                                <img src="./uploaded_img/<?php echo $img->image ?>" alt="">
+
+                                            <?php else : ?>
+
+                                                <img src="./Photos/def-product-img.jpg" alt="">
+
+                                            <?php endif ?>
+
+
+                                        </div>
+                                        <div class="item-detail">
+                                            <div class="item-price">
+                                                <span class="new-price">
+                                                    <?php
+                                                    echo $product->price
+                                                    ?> DT
+                                                </span>
+                                                <span class="old-price">
+                                                    <?php
+                                                    echo (0.2 * $product->price) + $product->price
+                                                    ?> DT
+                                                </span>
+                                            </div>
+                                            <a target="_blank" href="./product-details.php?product=<?php echo $product->product_id ?>" class="item-name"> <?php echo substr($product->name, 0, 40) ?> </a>
+
+                                        </div>
+                                    </div>
+
+                                <?php endforeach ?>
+
+                            <?php else : ?>
+                                <div class="note warning">
+                                    <span class="material-symbols-outlined">
+                                        warning
+                                    </span>
+                                    Vous avez 0 produits
+                                </div>
+                            <?php endif ?>
+
+                        </div>
+
+
+                    </div>
+                    <br><br>
+                </div>
+
             </div>
+            <br><br><br><br><br>
         </div>
+        <script>
+            let subMenu = document.getElementById("subMenu");
 
-        <a href="edit-profile.php"><button>Modifier profil</button></a>
+            function toggleMenu() {
+                subMenu.classList.toggle("open-menu");
+            }
+        </script>
 
-        
+        <script src="./libraries/notiflix/dist/notiflix-aio-3.2.5.min.js"></script>
+        <script>
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
 
-      </div>
-      <div class="right__col">
-        <nav>
-          <ul class="tabs">
-            <li class="active" data-cont=".mes_produits">Mes produits</li>
-            <li data-cont=".mes_favoires">Mes favoires</li>
-            <li data-cont=".mes_pause">Mes En pause</li>
-            <li data-cont=".mes_ventes">Mes ventes</li>
-            <li data-cont=".mes_achats">Mes achats</li>
+            if (urlParams.get("error") != "" && urlParams.get("error") != null) {
 
-          </ul>
-        </nav>
+                Notiflix.Notify.failure(urlParams.get("error"))
 
-        <div class="main-wrapper">
-          <div class="container">
-              <div class="mes_produits">
-                
-                  <div class = "item">
-                      <div class = "item-img">
-                          <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
+            }
+            if (urlParams.get("success") != "" && urlParams.get("success") != null) {
 
-                      </div>
-                      <div class = "item-detail">
-                          <div class = "item-price">
-                              <span class = "new-price">22 220.000 DT</span>
-                              <span class = "old-price">23 275.60 DT</span>
-                          </div>
-                          <a href = "#" class = "item-name">Z750</a>
-                          <a href = "#" class = "item-location">Bizerte</a>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                          <button type = "button" class = "add-btn">add to cart</button>
-                      </div>
-                  </div>
+                Notiflix.Notify.success(urlParams.get("success"))
 
-                  <div class = "item">
-                      <div class = "item-img">
-                          <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
+            }
+        </script>
 
-                      </div>
-                      <div class = "item-detail">
-                          <div class = "item-price">
-                              <span class = "new-price">220.000 DT</span>
-                              <span class = "old-price">275.60 DT</span>
-                          </div>
-                          <a href = "#" class = "item-name">Z750</a>
-                          <a href = "#" class = "item-location">Bizerte</a>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                          <button type = "button" class = "add-btn">add to cart</button>
-                      </div>
-                  </div>
-
-                  <div class = "item">
-                      <div class = "item-img">
-                          <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                      </div>
-                      <div class = "item-detail">
-                          <div class = "item-price">
-                              <span class = "new-price">220.000 DT</span>
-                              <span class = "old-price">275.60 DT</span>
-                          </div>
-                          <a href = "#" class = "item-name">Z750</a>
-                          <a href = "#" class = "item-location">Bizerte</a>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                          <button type = "button" class = "add-btn">add to cart</button>
-                      </div>
-                  </div>
-
-                  <div class = "item">
-                      <div class = "item-img">
-                          <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                      </div>
-                      <div class = "item-detail">
-                          <div class = "item-price">
-                              <span class = "new-price">220.000 DT</span>
-                              <span class = "old-price">275.60 DT</span>
-                          </div>
-                          <a href = "#" class = "item-name">Z750</a>
-                          <a href = "#" class = "item-location">Bizerte</a>
-                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                          <button type = "button" class = "add-btn">add to cart</button>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="mes_favoires">
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-
-                    <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-              </div>
-
-              <div class="mes_pause">
-               
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">22 220.000 DT</span>
-                                <span class = "old-price">23 275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
+        <script src="js/main.js"></script>
 
 
-                    
-              </div>
-
-              <div class="mes_ventes">
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-
-                    <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-              </div>
-
-              <div class="mes_achats">
-                <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-
-                    <div class = "item">
-                        <div class = "item-img">
-                            <img src = "Photos/category/3bb98c43d9fa2f7a560256cdb76244f1.jpg">
-
-                        </div>
-                        <div class = "item-detail">
-                            <div class = "item-price">
-                                <span class = "new-price">220.000 DT</span>
-                                <span class = "old-price">275.60 DT</span>
-                            </div>
-                            <a href = "#" class = "item-name">Z750</a>
-                            <a href = "#" class = "item-location">Bizerte</a>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore fugiat quod corporis delectus sequi laudantium molestias vero distinctio, qui numquam dolore, corrupti, enim consectetur cum?</p>
-                            <button type = "button" class = "add-btn">add to cart</button>
-                        </div>
-                    </div>
-              </div>
-          </div>
-          <br><br>
-      </div>
-
-      </div>
-      <br><br><br><br><br>
-    </div>
-<script>
-
-  let subMenu = document.getElementById("subMenu");
-
-  function toggleMenu(){
-    subMenu.classList.toggle("open-menu");
-  }
-  
-</script>
-<script src="js/main.js"></script>
-  
-    
 </body>
+
 </html>

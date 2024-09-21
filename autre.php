@@ -1,20 +1,24 @@
 
-
 <?php
+
+include "./database.php";
 
 session_start();
 
 if (isset($_SESSION["user_id"])) {
-    
-    $mysqli = require __DIR__ . "/database.php";
-    
+
+    $user = [];
+
     $sql = "SELECT * FROM user
             WHERE id = {$_SESSION["user_id"]}";
-            
-    $result = $mysqli->query($sql);
-    
-    $user = $result->fetch_assoc();
 
+    $result = $conn->query($sql);
+
+    if ($result->rowCount() == 1) {
+        $user = $result->fetch();
+    }
+} else {
+    header("location:./connexion.php");
 }
 
 ?>

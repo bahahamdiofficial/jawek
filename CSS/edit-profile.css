@@ -1,0 +1,90 @@
+.container-edit {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.container-edit .side-nav {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 10px;
+}
+
+.container-edit .side-nav a {
+  width: 90%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+
+  color: #032f61;
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: all 300ms ease-in-out;
+  /*border-bottom: 1px dashed #032f61;*/
+}
+
+.container-edit .side-nav h3{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ff8800;
+}
+
+    
+    
+.container-edit .side-nav a:hover {
+  color: #0a5cba;
+}
+
+.container-edit .inline-section {
+  width: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  display: none;
+}
+
+.container-edit .inline-section form {
+  width: 70%;
+}
+
+.container-edit .inline-section.active {
+  display: flex;
+}
+
+.container-edit .prev-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.container-edit form {
+  width: 40%;
+}
+
+@media (max-width: 950px) {
+  .container-edit {
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .container-edit {
+    flex-direction: column;
+  }
+
+  .container-edit .inline-section form {
+    width: 100%;
+  }
+
+  .container-edit form {
+    width: 70%;
+  }
+}

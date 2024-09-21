@@ -1,19 +1,13 @@
 
 
 <?php
-
 $host = "localhost";
-$dbname = "login_db";
-$username = "root";
+$user = "root";
 $password = "";
+$dbName = "u186675676_login_db";
 
-$mysqli = new mysqli(hostname: $host,
-                     username: $username,
-                     password: $password,
-                     database: $dbname);
-                     
-if ($mysqli->connect_errno) {
-    die("Connection error: " . $mysqli->connect_error);
-}
+$dsn = "mysql:host=$host;dbname=$dbName";
 
-return $mysqli;
+$conn = new PDO($dsn, $user, $password);
+
+$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);

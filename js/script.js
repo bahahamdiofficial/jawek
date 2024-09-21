@@ -1,20 +1,29 @@
-const itemList = document.querySelector('.item-list');
-const gridViewBtn = document.getElementById('grid-active-btn');
-const detailsViewBtn = document.getElementById('details-active-btn');
+let burger = document.querySelector(".burger");
+let menu = document.querySelector("header .right");
 
-gridViewBtn.classList.add('active-btn');
+if (burger != null) {
+  burger.addEventListener("click", () => {
+    menu.classList.toggle("show");
+  });
+}
 
-gridViewBtn.addEventListener('click', () => {
-    gridViewBtn.classList.add('active-btn');
-    detailsViewBtn.classList.remove('active-btn');
-    itemList.classList.remove('details-active');
-});
+// const itemList = document.querySelector('.item-list');
+// const gridViewBtn = document.getElementById('grid-active-btn');
+// const detailsViewBtn = document.getElementById('details-active-btn');
 
-detailsViewBtn.addEventListener('click', () => {
-    detailsViewBtn.classList.add('active-btn');
-    gridViewBtn.classList.remove("active-btn");
-    itemList.classList.add("details-active");
-});
+// gridViewBtn.classList.add('active-btn');
+
+// gridViewBtn.addEventListener('click', () => {
+//     gridViewBtn.classList.add('active-btn');
+//     detailsViewBtn.classList.remove('active-btn');
+//     itemList.classList.remove('details-active');
+// });
+
+// detailsViewBtn.addEventListener('click', () => {
+//     detailsViewBtn.classList.add('active-btn');
+//     gridViewBtn.classList.remove("active-btn");
+//     itemList.classList.add("details-active");
+// });
 // console.log("itemList", itemList)
 // const ItemsPerPage = 20;
 // for (let i = 0; i < ItemsPerPage; i++) {
@@ -50,4 +59,3 @@ detailsViewBtn.addEventListener('click', () => {
 //     `
 //     itemList.append(item)
 // }
-

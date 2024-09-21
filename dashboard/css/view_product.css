@@ -1,0 +1,102 @@
+.product-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.product-info .product-images {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 2rem;
+}
+
+.product-info .product-images .img {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-400);
+  border: 0.1rem solid var(--clr-gray-100);
+}
+
+.product-info .product-images .img .img-actual {
+  width: 100%;
+  height: 15rem;
+  border-radius: var(--radius-200);
+  overflow: hidden;
+}
+
+.product-info .product-images .img-control {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.product-info .product-images .img-control a {
+  color: var(--clr-gray-900);
+}
+
+.product-info .product-images .img-control a:hover {
+  transform: scale(1.1);
+  color: var(--clr-gray-900);
+}
+
+.product-info .product-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.product-info .product-details p {
+  width: 60%;
+}
+
+.product-info .product-controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.product-info .product-controls a {
+  min-width: 12rem;
+  padding: 0 1rem;
+  height: 4rem;
+  border: 0.1rem solid var(--clr-gray-200);
+  border-radius: var(--radius-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--clr-gray-900);
+  transition: all 300ms ease-in-out;
+}
+
+.product-info .product-controls a.edit {
+  border-color: rgb(0, 68, 255);
+  color: rgb(0, 68, 255);
+}
+.product-info .product-controls a.edit:hover {
+  background-color: rgb(0, 68, 255);
+  color: white;
+}
+.product-info .product-controls a.delete {
+  border-color: rgb(255, 0, 144);
+  color: rgb(255, 0, 144);
+}
+.product-info .product-controls a.delete:hover {
+  background-color: rgb(255, 0, 144);
+  color: white;
+}
+
+.product-info .product-controls a.activate {
+  border: 0.2rem solid #03c988;
+  color: #03c988;
+}
+
+.product-info .product-controls a.activate:hover {
+  background-color: #03c988;
+  color: white;
+}

@@ -1,0 +1,22 @@
+.form-container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media (max-width: 500px) {
+  .form-container form {
+    flex-direction: column;
+    align-items: center;
+  }
+}

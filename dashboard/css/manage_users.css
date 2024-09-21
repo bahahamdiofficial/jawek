@@ -1,0 +1,6 @@
+.profile-pic {
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--radius-half);
+  overflow: hidden;
+}
